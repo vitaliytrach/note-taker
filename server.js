@@ -10,9 +10,11 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 const homeRoutes = require("./routes/homeRoute");
-app.use(homeRoutes);
+const noteRoutes = require("./routes/noteRoute");
 
+app.use(homeRoutes);
+app.use(noteRoutes);
 
 app.listen(port, () => {
-    console.log(`Listening at htpp://localhost:${port}`);
+    console.log(`Listening at https://localhost:${port}`);
 });
