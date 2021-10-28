@@ -15,6 +15,7 @@ router.post("/api/notes", (req, res) => {
         note["id"] = uniqid();
         notes_db.push(note);
         fs.writeFileSync("./db/db.json", JSON.stringify(notes_db, null, 8));
+        res.json({message:"Success"});       
     }
 });
 
@@ -23,9 +24,12 @@ router.delete("/api/notes/:id", (req, res) => {
         if(notes_db[i].id === req.params.id) {
             notes_db.splice(i, 1);
             fs.writeFileSync("./db/db.json", JSON.stringify(notes_db, null, 8));
-            break;
+            res.json({message:"Success"});
+            return;
         }
     }
+
+    res.json({message:"Failure"});
 });
 
 module.exports = router;
